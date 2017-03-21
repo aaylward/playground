@@ -1,4 +1,5 @@
 #include <Adafruit_CircuitPlayground.h>
+#include <Arduino.h>
 
 void light_loop(int number_of_pixels, int delay_millis, int hold_millis) {
     uint8_t pixeln = 0;
