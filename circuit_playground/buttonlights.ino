@@ -3,7 +3,6 @@
 
 const int NUMBER_OF_PIXELS = 10;
 const int DELAY_MILLIS = 50;
-const int HOLD_MILLIS = 500;
 
 bool rightButtonJustPressed = false;
 
@@ -18,7 +17,8 @@ void loop() {
   }
 
   if (!rightButtonJustPressed) {
-    light_loop(NUMBER_OF_PIXELS, DELAY_MILLIS, HOLD_MILLIS);
+    light_loop(NUMBER_OF_PIXELS, DELAY_MILLIS);
+    CircuitPlayground.clearPixels();
     rightButtonJustPressed = true;
   }
 }
