@@ -9,7 +9,7 @@ const int INITIAL_BRIGHTNESS = 80;
 const int NUMBER_OF_PULSES = 5;
 const int PULSE_DELAY_MILLIS = 2;
 
-bool rightButtonJustPressed = false;
+bool rightButtonPressed = false;
 
 void setup() {
   CircuitPlayground.begin();
@@ -17,11 +17,11 @@ void setup() {
 
 void loop() {
   if (!CircuitPlayground.rightButton()) {
-    rightButtonJustPressed = false;
+    rightButtonPressed = false;
     return;
   }
 
-  if (!rightButtonJustPressed) {
+  if (!rightButtonPressed) {
     CircuitPlayground.setBrightness(INITIAL_BRIGHTNESS);
     light_loop(DELAY_MILLIS, IN_ORDER, clockwise);
     pulse(NUMBER_OF_PULSES, PULSE_DELAY_MILLIS);
@@ -29,6 +29,6 @@ void loop() {
     CircuitPlayground.setBrightness(INITIAL_BRIGHTNESS);
     light_loop(DELAY_MILLIS, SCATTER, counter_clockwise);
     CircuitPlayground.clearPixels();
-    rightButtonJustPressed = true;
+    rightButtonPressed = true;
   }
 }
