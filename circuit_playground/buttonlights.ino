@@ -1,8 +1,13 @@
 #include <Adafruit_CircuitPlayground.h>
 #include "lights.h"
 
-const int NUMBER_OF_PIXELS = 10;
+#define IN_ORDER 1
+#define SCATTER 3
+
 const int DELAY_MILLIS = 50;
+const int INITIAL_BRIGHTNESS = 80;
+const int NUMBER_OF_PULSES = 5;
+const int PULSE_DELAY_MILLIS = 2;
 
 bool rightButtonJustPressed = false;
 
@@ -17,7 +22,12 @@ void loop() {
   }
 
   if (!rightButtonJustPressed) {
-    light_loop(NUMBER_OF_PIXELS, DELAY_MILLIS);
+    CircuitPlayground.setBrightness(INITIAL_BRIGHTNESS);
+    light_loop(DELAY_MILLIS, IN_ORDER, clockwise);
+    pulse(NUMBER_OF_PULSES, PULSE_DELAY_MILLIS);
+    CircuitPlayground.clearPixels();
+    CircuitPlayground.setBrightness(INITIAL_BRIGHTNESS);
+    light_loop(DELAY_MILLIS, SCATTER, counter_clockwise);
     CircuitPlayground.clearPixels();
     rightButtonJustPressed = true;
   }
